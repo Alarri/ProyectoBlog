@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
   	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> -->
 	<!-- include libries(jQuery, bootstrap, fontawesome) -->
-	<title>Crear Blogs</title>
+	<title>Editar Post</title>
 <!--
 	<link rel="stylesheet"  href="http://127.0.0.1/ProyectoBlog/Post/css/bootstrap.css"> 
 	<link rel="stylesheet"  href="http://localhost/ProyectoBlog/Post/css/font-awesome.min.css">
@@ -75,77 +75,31 @@
 
 			<div class="col-lg-12">
 
-				<form class="form-horizontal" action="<?php echo base_url();?>Post/CrearPost" method="Post">
-
+				<form class="form-horizontal" action="<?php echo base_url();?>Post/EditarPost" method="Post">
+					<input type="hidden" name='id' value="<?php echo $data->id_blog; ?>" > 
 					<label>
 			          Titulo del Blog
 			        </label>
-			        <input id="titulo" name="titulo" type="text" placeholder="Digite el titulo del Blog" class="input-xlarge">
+			        <input id="titulo" name="titulo" type="text" value="<?php echo $data->titulo; ?>" class="input-xlarge">
 			        <br><br>
 					<div class="form-group">
-
-						<textarea rows="8" cols="50" id="texto" name="texto" rows="10" class="form-control" class="input-xlarge"></textarea>
+						<textarea rows="8" cols="50" id="texto" name="texto" rows="10"  class="form-control" class="input-xlarge"><?php echo $data->texto; ?></textarea>
 					</div>
+					<label>
+			          Fecha
+			        </label>
+			        <input id="fecha" name="fecha" type="text" value="<?php echo $data->fecha; ?>" class="input-xlarge">
+			        <br><br>
 
-					<button type="sumit" class="btn btn-success btn-lg" >Guardar</button>
+					<button type="sumit" class="btn btn-success btn-lg" >Editar</button>
 					<br><br><br><br>
-				</form>
-				
-				<div class="container">
-			      <?php
-			        $cont=1;
-			        foreach ($listaDePost as $row) { 
-			            echo '  <div class="row"> ';
-			            echo '      <div class="col-md-4 col-md-offset-1 panel panel-default"> ';
-			            echo '          <div class="right"> ';
-			            echo '              <div class="btn-group pull-right">';
-			            echo '                  <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">';
-			            echo '                      Actualizaci&#243;n ';
-			            echo '                      <span class="icon-cog icon-white"></span><span class="caret"></span>';
-			            echo '                  </a>';
-			            echo '                  <ul class="dropdown-menu">';
-			            echo '                      <li><a href="' . base_url() . 'Post/Editar/' . $row['id_blog'] . '"><span class="icon-wrench"></span> Editar</a></li>';
-			            echo '                      <li><a href="' . base_url() . 'Post/Eliminar/' . $row['id_blog'] . '"><span class="icon-trash"></span> Eliminar</a></li>';
-			            echo '                  </ul>';
-			            echo '              </div>';
-			            echo '              <div class="media-body"> ';
-			            echo '                  <h5 class="margin-base-vertical">'.$cont.'->  <a href="#">' . $row['titulo'] . '</a></h5> ';
-			            echo '          </div>';
-			            echo '      </div>';
-			            echo '        <!-- //main content -->';
-			            echo '  </div>';    
-			            $cont=$cont+1;       
-			        }
-			      ?>
-
-			      <!-- //row -->
-			    </div>
+				</form>				
 				
 			</div>
 		</div>
 	</div>
 
-<!--
-	<script src="system/js/jquery.js"></script> 
-	<script src="http://127.0.0.1/ProyectoBlog/Post/js/bootstrap.min.js"></script> 
-	<script src="http://127.0.0.1/ProyectoBlog/Post/js/codemirror/codemirror.js"></script> 
-	<script src="http://127.0.0.1/ProyectoBlog/Post/js/codemirror/formatting.min.js"></script> 
-	<script src="http://127.0.0.1/ProyectoBlog/Post/js/codemirror/xml.min.js"></script>
-	<script src="http://127.0.0.1/ProyectoBlog/Post/js/summernote.min.js"></script>
-	
-	<script>
-		$(document).ready(function(){
-	  		$('#description').summernote(
-	  			{
-	  				height: 200/**
-	  				codemirror: {
-	  					theme: 'monokai' //theme
-	  				}*/
-	  			});
-		});
 
-	</script>
--->
 	<script src="https://code.jquery.com/jquery.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 </body>

@@ -13,7 +13,9 @@ class Post extends CI_Controller {
      **/
      
      $this->load->model('PostModel');
-     $data['data']=$this->PostModel->ListaPost();
+     $this->load->model('AdminModel');
+     $data['listaDePost']=$this->PostModel->ListaPost();
+     $data['Admin']=$this->AdminModel->ObtenerTitulo(1);
      $this->load->view('Blog/Index',$data);
     
   }
@@ -25,8 +27,10 @@ class Post extends CI_Controller {
 
   public function Crear()
   {
-   
-     $this->load->view('Post/index.html');
+    $this->load->model('PostModel');
+     $ListaDePost['listaDePost']=$this->PostModel->ListaPost();
+  
+    $this->load->view('Post/Crear',$ListaDePost);
   }
 
   public function CrearPost()
@@ -35,13 +39,13 @@ class Post extends CI_Controller {
     //Imprimimos la fecha actual dandole un formato
     
     /* Aqui le indicamos que campos deseamos mostrar */ 
-    
+    $this->output->append_output(var_dump($_POST));
 
     $PostNew=array(
-        'admin_id' => 1 ,
-        'titulo' => $this->input->post('titulo') ,
-        'texto' => $this->uri->segment(3) ,
-        'fecha' => date("d/m/Y")         
+        'Admin_id' => 1 ,
+        'Titulo' => $this->input->post('titulo') ,
+        'Texto' => $this->input->post('texto') ,
+        'Fecha' => date("d/m/Y")         
     );
 
     /* Generamos la tabla */
@@ -63,7 +67,8 @@ class Post extends CI_Controller {
     $id=$this->uri->segment(3);
     $this->load->model("PostModel");
     $data['data']=$this->PostModel->ObtenerPost($id);
-    $this->load->view('Post/Editar',$data);
+    $this->output->append_output(var_dump($data));
+    $this->load->view('Post/EditarPost',$data);
   }
 
   public function EditarPost()
@@ -76,7 +81,7 @@ class Post extends CI_Controller {
         'fecha' => $this->input->post('fecha') );
 
     $this->load->model("PostModel");
-    if($this->ClienteModel->Editar($id,$PostModificado))
+    if($this->PostModel->Editar($id,$PostModificado))
     {
       redirect(base_url()."Post");
     }
@@ -94,7 +99,7 @@ class Post extends CI_Controller {
     $this->load->model("PostModel");
     if($this->PostModel->Eliminar($id))
     {
-      redirect(base_url()."Post");///ver
+      redirect(base_url()."Post/Crear");///ver
     }
     else
     {
