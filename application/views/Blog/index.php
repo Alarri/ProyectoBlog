@@ -70,7 +70,7 @@
 			            echo ' 		<h3>'.$row['titulo'].'</h3><br>';
 			            echo ' 		<p>'.$row['texto'].'</p><br>';
 			            echo ' 		<h4 class="margin-base-vertical"> <small> ' . $row['fecha'] . '</small></h4> ';
-			            echo '      <h5 class="margin-base-vertical"> <a href="' . base_url() . 'Comentarios/Ver/' . $row['id_blog'] . '"> Comnetarios </a></h5> ';
+			            echo '      <h5 class="margin-base-vertical"> <a href="' . base_url() . 'Comentarios/Crear/' . $row['id_blog'] . '"> Comnetarios </a></h5> ';
 			            echo '  </div>';    
 			                 
 			        }
