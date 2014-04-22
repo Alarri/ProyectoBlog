@@ -71,14 +71,14 @@
 <body>
 	<div class="row">
 		<div class="container">
-			<h2>Crear Blogs</h2>
+			<h2>Crear Post</h2>
 
 			<div class="col-lg-12">
 
 				<form class="form-horizontal" action="<?php echo base_url();?>Post/CrearPost" method="Post">
 
 					<label>
-			          Titulo del Blog
+			          Titulo del Post
 			        </label>
 			        <input id="titulo" name="titulo" type="text" placeholder="Digite el titulo del Blog" class="input-xlarge">
 			        <br><br>
@@ -90,7 +90,7 @@
 					<button type="sumit" class="btn btn-success btn-lg" >Guardar</button>
 					<br><br><br><br>
 				</form>
-				
+				<h3>Editar Post</h3>
 				<div class="container">
 			      <?php
 			        $cont=1;
@@ -109,7 +109,8 @@
 			            echo '                  </ul>';
 			            echo '              </div>';
 			            echo '              <div class="media-body"> ';
-			            echo '                  <h5 class="margin-base-vertical">'.$cont.'->  <a href="#">' . $row['titulo'] . '</a></h5> ';
+			            echo '                  <h5 class="margin-base-vertical">'.$cont.'->  <a href="' . base_url() . 'Comentarios/Estado/' . $row['id_blog'] . '">' . $row['titulo'] . '</a></h5> ';
+			            echo '          	</div>';
 			            echo '          </div>';
 			            echo '      </div>';
 			            echo '        <!-- //main content -->';

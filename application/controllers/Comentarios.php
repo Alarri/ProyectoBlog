@@ -77,7 +77,16 @@ class Comentarios extends CI_Controller {
        $this->load->view('welcome_message');
     }
   }
-    
+  public function Estado()
+  {
+    $Blog_id=$this->uri->segment(3);
+    $this->load->model('CommentsModel');
+    $this->load->model('PostModel');    
+    $data['UnPost']=$this->PostModel->ObtenerPost($Blog_id);    
+    $data['ListaDeComments']=$this->CommentsModel->ListaComments();
+    $this->load->view('Comments/MantComments',$data);
+  }
+
   public function Editar()
   {
     $id=$this->uri->segment(3);
@@ -87,19 +96,27 @@ class Comentarios extends CI_Controller {
     $this->load->view('Post/EditarPost',$data);
   }
 
-  public function EditarPost()
+  public function EditarEstado()
   {
-    $id=$this->input->post('id');
+    $id=$this->uri->segment(3);
+    $Blog_id=$this->uri->segment(4);
+    if($this->input->post('activo')=="1"){
+      $PostModificado=array(        
+        'activo'=> 0 );
+    }else{
+      $PostModificado=array(        
+        'activo'=> 1 );
+    }
+    
 
-    $PostModificado=array(        
-        'titulo'=> $this->input->post('titulo') ,
-        'texto' => $this->input->post('texto') ,
-        'fecha' => $this->input->post('fecha') );
-
-    $this->load->model("PostModel");
-    if($this->PostModel->Editar($id,$PostModificado))
+    $this->load->model("CommentsModel");
+    if($this->CommentsModel->Editar($id,$PostModificado))
     {
-      redirect(base_url()."Post");
+      $this->load->model('CommentsModel');
+      $this->load->model('PostModel');    
+      $data['UnPost']=$this->PostModel->ObtenerPost($Blog_id);    
+      $data['ListaDeComments']=$this->CommentsModel->ListaComments();
+      $this->load->view('Comments/MantComments',$data);
     }
     else
     {
@@ -112,10 +129,10 @@ class Comentarios extends CI_Controller {
   {
     $id=$this->uri->segment(3);
 
-    $this->load->model("PostModel");
-    if($this->PostModel->Eliminar($id))
+    $this->load->model("CommentsModel");
+    if($this->CommentsModel->Eliminar($id))
     {
-      redirect(base_url()."Post/Crear");///ver
+      redirect(base_url()."Post");///ver
     }
     else
     {

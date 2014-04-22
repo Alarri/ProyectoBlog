@@ -25,11 +25,12 @@ class Login extends CI_Controller {
     //$this->output->append_output(var_dump($data));
     //$this->output->append_output(var_dump($data['data']->usuario));
 
-    if($usuario==$data['data']->usuario && $clave==$data['data']->clave)
+    if(($usuario==$data['data']->usuario) && ($clave==$data['data']->clave))
     {
       redirect(base_url()."Post/Crear");
     }
-    $this->load->view('Blog/index');
+     
+     $this->load->view('Post');
   }
 
 

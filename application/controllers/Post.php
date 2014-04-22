@@ -67,7 +67,7 @@ class Post extends CI_Controller {
     $id=$this->uri->segment(3);
     $this->load->model("PostModel");
     $data['data']=$this->PostModel->ObtenerPost($id);
-    $this->output->append_output(var_dump($data));
+   // $this->output->append_output(var_dump($data));
     $this->load->view('Post/EditarPost',$data);
   }
 

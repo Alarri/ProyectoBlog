@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> -->
   <!-- include libries(jQuery, bootstrap, fontawesome) -->
-  <title>Comentarios</title>
+  <title>Activar Comentarios</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -58,7 +58,7 @@
 <body>
   <div class="row">
     <div class="container">
-      <h2>Comentarios</h2><br>
+      <h2>Mantenimiento de Comentarios</h2><br>
 
       <div class="col-lg-12">
 
@@ -88,35 +88,33 @@
             <?php
               
               foreach ($ListaDeComments as $row) { 
-                if (($row['activo']=="1")&&($row['blog_id']==$UnPost->id_blog)) {
+                if ($row['blog_id']==$UnPost->id_blog) {
                   echo '  <div class="row"> ';
                   echo '    <h3>'.$row['usuario_comentario'].'</h3>';
                   echo '    <p>'.$row['comentario'].'</p>';
-                  echo '    <h4 class="margin-base-vertical"> <small> ' . $row['fecha'] . '</small></h4> ';                 
+                  echo '    <h4 class="margin-base-vertical"> <small> ' . $row['fecha'] . '</small></h4> ';  
+                  echo '    <div class="btn-group pull-right">';
+                  echo '      <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">';
+                  echo '        Actualizaci&#243;n ';
+                  echo '        <span class="icon-cog icon-white"></span><span class="caret"></span>';
+                  echo '      </a>';
+                  echo '      <ul class="dropdown-menu">';
+                  if ($row['activo']=="1"){
+                    echo '        <li><a href="' . base_url() . 'Comentarios/EditarEstado/' . $row['id_comments'] . '/'. $row['blog_id'] .'"><span class="icon-ok"></span> Activo</a></li>';
+                  }else{
+                    echo '        <li><a href="' . base_url() . 'Comentarios/EditarEstado/' . $row['id_comments'] . '/'. $row['blog_id'] .'"><span class="icon-remove"></span> Desactivo</a></li>';
+                  }
+                  echo '        <li><a href="' . base_url() . 'Comentarios/Eliminar/' . $row['id_comments'] . '"><span class="icon-trash"></span> Eliminar</a></li>';
+                  echo '      </ul>';
+                  echo '    </div>';               
                   echo '  </div>';    
                 } 
               }
             ?>
           </div>
           <!-- CREAR Comentarios-->
-        <form class="form-horizontal" action="<?php echo base_url();?>Comentarios/CrearComments" method="Post">
-          <br><br><br>
-          <h3>Crear Comentario</h3>
-
-          <input type="hidden" id='blog_id' name='blog_id' value="<?php echo $UnPost->id_blog; ?>" > 
-
-          <label>Usuario</label>
-          <input id="usuario_comentario" name="usuario_comentario" type="text" placeholder="Digite su Nombre" class="input-xlarge">
-          <br><br>
-          <label>Comentario</label>
-          <div class="form-group">
-            <textarea rows="6" cols="30" id="comentario" name="comentario" class="form-control" class="input-xlarge"></textarea>
-          </div>
-
-          <button type="sumit" class="btn btn-success btn-lg" >Ingresar Comentario</button>
-          <br><br><br><br>
-        </form>       
-        
+               
+        <a href="<?php  base_url() ?>Post"><span class="icon-home"></span> Pagina Inicio</a>
       </div>
     </div>
   </div>

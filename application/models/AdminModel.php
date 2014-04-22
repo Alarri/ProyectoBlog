@@ -35,7 +35,7 @@ class AdminModel extends CI_Model{
 	public function ObtenerAdminAutenticar($usuario, $clave)
 	{	
 		$array = array('usuario' => $usuario, 'clave' => $clave);
-		$this->output->append_output(var_dump($array));
+		//$this->output->append_output(var_dump($array));
 		$this->db->where($array); 
 
 		$query = $this->db->get('administradores');

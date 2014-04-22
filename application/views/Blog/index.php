@@ -78,6 +78,7 @@
 
 			      <!-- //row -->
 			    </div>
+			    
 			    <div class="container" style="height:200px;width:100px;float:left;">
 				<form class="form-horizontal" action="<?php echo base_url();?>Login/Autenticar" method="Post">
 					<h3>Loguin</h3>
@@ -94,6 +95,7 @@
 
 					<button type="sumit" class="btn btn-success btn-lg" >Entrar</button>
 					<br><br>
+
 				</form>
 				</div>
 

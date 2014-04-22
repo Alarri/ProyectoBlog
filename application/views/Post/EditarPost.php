@@ -77,7 +77,7 @@
 			        </label>
 			        <input id="fecha" name="fecha" type="text" value="<?php echo $data->fecha; ?>" class="input-xlarge">
 			        <br><br>
-
+			        
 					<button type="sumit" class="btn btn-success btn-lg" >Editar</button>
 					<br><br><br><br>
 				</form>				
